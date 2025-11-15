@@ -4,5 +4,4 @@ USER root
 RUN apt-get update && apt-get install -y postgresql-client
 USER odoo
 
-# Используем переменные окружения для подключения к базе
-CMD ["/bin/bash", "-c", "sleep 10 && python3 /usr/bin/odoo -d $DATABASE --db_host=$HOST --db_port=$PORT --db_user=$USER --db_password=$PASSWORD -i base --without-demo=all --stop-after-init && exec python3 /usr/bin/odoo --db_host=$HOST --db_port=$PORT --db_user=$USER --db_password=$PASSWORD"]
+CMD ["/bin/bash", "-c", "sleep 10 && python3 /usr/bin/odoo -d $DB_NAME --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD -i base --without-demo=all --stop-after-init && exec python3 /usr/bin/odoo --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD"]

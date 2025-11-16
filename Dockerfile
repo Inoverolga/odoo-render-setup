@@ -4,5 +4,5 @@ USER root
 RUN apt-get update && apt-get install -y postgresql-client
 USER odoo
 
-# Простая команда без сложной логики
-CMD ["python3", "/usr/bin/odoo", "--without-demo=all"]
+# Явно передаем переменные в команду
+CMD ["python3", "/usr/bin/odoo", "--without-demo=all", "--db_host=${DB_HOST}", "--db_port=${DB_PORT}", "--db_user=${DB_USER}", "--db_password=${DB_PASSWORD}", "--database=${DB_NAME}"]

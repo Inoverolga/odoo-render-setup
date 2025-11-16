@@ -1,2 +1,4 @@
-FROM odoo:16
-CMD ["odoo", "--config", "/etc/odoo/odoo.conf"]
+FROM python:3.8
+RUN pip install odoo==16.0
+EXPOSE 8069
+CMD ["odoo"]

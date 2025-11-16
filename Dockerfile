@@ -1,4 +1,4 @@
-FROM odoo:16
+# FROM odoo:16
 
 # USER root
 # RUN apt-get update && apt-get install -y postgresql-client

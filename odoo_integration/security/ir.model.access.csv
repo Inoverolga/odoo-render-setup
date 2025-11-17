@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_x_inventory_data_user,x_inventory.data.user,model_x_inventory_data,base.group_user,1,1,1,1
-access_x_inventory_data_manager,x_inventory.data.manager,model_x_inventory_data,base.group_system,1,1,1,1

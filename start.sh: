@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Ждем базу данных
+until pg_isready -h $HOST -p $PORT -U $USER; do
+  echo "Waiting for database..."
+  sleep 2
+done
+
+# Инициализируем базу
+python3 /usr/bin/odoo -d $DATABASE -i base --without-demo=all --stop-after-init
+
+# Запускаем Odoo
+exec python3 /usr/bin/odoo

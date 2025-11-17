@@ -1,3 +1,7 @@
 FROM odoo:16
-COPY odoo.conf /etc/odoo/
-CMD ["python3", "/usr/bin/odoo"]
+
+USER root
+RUN apt-get update && apt-get install -y postgresql-client
+USER odoo
+
+CMD ["/bin/bash", "-c", "sleep 10 && python3 /usr/bin/odoo -d $DB_NAME --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD -i base --without-demo=all --stop-after-init && exec python3 /usr/bin/odoo --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD"]

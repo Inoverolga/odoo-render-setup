@@ -1,15 +1,8 @@
-FROM odoo:16.0
+
+FROM odoo:16
+
 USER root
-
-COPY odoo_inventory_integration /mnt/extra-addons/inventory_integration
-COPY odoo.conf /etc/odoo/odoo.conf
-
-# ПРОВЕРЯЕМ что конфиг скопировался
-RUN cat /etc/odoo/odoo.conf && \
-    echo "=== Current config ===" && \
-    ls -la /etc/odoo/
-
-RUN chown -R odoo:odoo /mnt/extra-addons/ /etc/odoo/
-
+RUN apt-get update && apt-get install -y postgresql-client
 USER odoo
-CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]
+
+CMD ["/bin/bash", "-c", "sleep 10 && python3 /usr/bin/odoo -d $DB_NAME --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD -i base --without-demo=all --stop-after-init && exec python3 /usr/bin/odoo --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD"]

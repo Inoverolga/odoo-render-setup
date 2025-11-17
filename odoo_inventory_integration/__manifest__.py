@@ -1,14 +1,10 @@
 {
-    'name': 'Inventory Integration',
+    'name': 'Inventory Import',
     'version': '1.0',
-    'summary': 'Storage for external inventory data',
-    'category': 'Inventory',
+    'summary': 'Import inventory data from API',
     'depends': ['base'],
     'data': [
-        'security/ir.model.access.csv',
         'views/inventory_views.xml',
     ],
     'installable': True,
-    'application': False,
-    'auto_install': False,
 }

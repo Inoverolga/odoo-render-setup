@@ -1,1 +1,1 @@
-from . import inventory_integration
+from . import inventory_import

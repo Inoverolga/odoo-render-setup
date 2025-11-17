@@ -1,60 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Добавляем кнопку в форму -->
     <record id="view_x_inventory_data_form_inherit" model="ir.ui.view">
-        <field name="name">x.inventory.data.form.inherit</field>
-        <field name="model">x_inventory_data</field>
-        <field name="inherit_id" ref="base.view_model_form"/>
+        <field name="name">x.inventory.data.form.import</field>
+        <field name="model">x_inventory.data</field>
+        <field name="inherit_id" ref="view_x_inventory_data_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
-                <div class="oe_button_box" name="button_box">
-                    <button 
-                        name="action_import_data" 
-                        string="Импортировать данные" 
+                <button name="action_import_from_api" 
+                        string="Импортировать из API" 
                         type="object" 
-                        class="btn-primary"
-                        attrs="{'invisible': [('x_api_token', '=', False)]}"
-                    />
-                </div>
+                        class="btn-primary"/>
             </xpath>
-            
-            <!-- Показываем статус синхронизации -->
-            <xpath expr="//field[@name='x_last_sync_result']" position="before">
-                <group string="Результат импорта">
-                    <field name="x_last_sync_result" readonly="1"/>
-                    <field name="x_total_count" readonly="1"/>
-                </group>
-            </xpath>
-        </field>
-    </record>
-
-    <!-- Добавляем кнопку в список -->
-    <record id="view_x_inventory_data_tree_inherit" model="ir.ui.view">
-        <field name="name">x.inventory.data.tree.inherit</field>
-        <field name="model">x_inventory_data</field>
-        <field name="inherit_id" ref="base.view_model_tree"/>
-        <field name="arch" type="xml">
-            <xpath expr="//tree" position="inside">
-                <button 
-                    name="action_import_data" 
-                    string="Импорт" 
-                    type="object" 
-                    class="btn-secondary"
-                    attrs="{'invisible': [('x_api_token', '=', False)]}"
-                />
-            </xpath>
-        </field>
-    </record>
-
-    <!-- Действие для массового импорта -->
-    <record id="action_import_all_inventories" model="ir.actions.server">
-        <field name="name">Импортировать все инвентаризации</field>
-        <field name="model_id" ref="model_x_inventory_data"/>
-        <field name="binding_model_id" ref="model_x_inventory_data"/>
-        <field name="binding_view_types">list</field>
-        <field name="state">code</field>
-        <field name="code">
-            model.import_from_api()
         </field>
     </record>
 </odoo>
